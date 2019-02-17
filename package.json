@@ -1,0 +1,21 @@
+{
+  "name": "mongodb_muber",
+  "version": "0.0.1",
+  "description": "Stephen Grider MongoDB final project\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[Dcourse final project \"Muber\" API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "uber",
+    "muber",
+    "stephen",
+    "grider",
+    "express",
+    "mongoose",
+    "api",
+    "udemy"
+  ],
+  "author": "Ahnthnthony Jackman",
+  "license": "MIT"
+}

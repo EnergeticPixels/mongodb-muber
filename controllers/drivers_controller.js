@@ -15,7 +15,7 @@ module.exports = {
     //console.log(req.body);
     const driverProps = req.body;
 
-    Driver.save(driverProps)
+    Driver.create(driverProps)
       .then(driver => res.send(driver));
   }
 };

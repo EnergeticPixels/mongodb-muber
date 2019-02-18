@@ -7,6 +7,12 @@ const Driver = mongoose.model('driver');
 
 describe('Drivers controller', () => {
 
+  beforeEach((done) => {
+    mongoose.connection.collections.drivers.drop(() => {
+      //this function runs after the drop is completed
+     done(); //go ahead everything is done now.
+  })
+});
   it('post to /api/drivers creates a new driver', (done) => {
     // niave test becuz just making sure count is one upped
     Driver.countDocuments()
@@ -17,9 +23,9 @@ describe('Drivers controller', () => {
           .end(() => {
             Driver.countDocuments()
               .then(newCount => {
-                console.log('Count is ' + count);
-                console.log('newCount is ' + newCount);
-                assert(count === newCount);
+                //console.log('Count is ' + count);
+                //console.log('newCount is ' + newCount);
+                assert(count + 1 === newCount);
                 done();
               });
           });

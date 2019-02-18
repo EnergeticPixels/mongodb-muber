@@ -26,4 +26,24 @@ describe('Drivers controller', () => {
       });
     
   });
+
+  it('put to /api/drivers/id edits our driver', (done) => {
+    // create driver
+    const driver = new Driver({ email: 't@t.com', driving: false });
+    driver.save()
+      .then(() => {
+        // change get the just saved record
+        request(app)
+          .put(`/api/drivers/${driver._id}`)
+          .send({ driving: true })
+          .end(() => {
+            // retrieve the changed data to make sure its good saved.
+            Driver.findOne({ email: 't@t.com' })
+              .then(driver => {
+                assert(driver.driving === true);
+                done();
+              });
+          });
+      });
+  })
 })

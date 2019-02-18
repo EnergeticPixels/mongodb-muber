@@ -18,5 +18,17 @@ module.exports = {
     Driver.create(driverProps)
       .then(driver => res.send(driver))
       .catch(next);
+  },
+
+  edit(req, res, next) {
+    // .id here has to match the :id in words to make it work.
+    // we could use .driverId here and in route file it would ahve to be :driverId
+    const driverId = req.params.id;
+    const driverProps = req.body;
+
+    Driver.findByIdAndUpdate({ _id: driverId }, driverProps)
+      .then(() => Driver.findById({ _id: driverId}))
+      .then(driver => res.send(driver))
+      .catch(next);
   }
 };

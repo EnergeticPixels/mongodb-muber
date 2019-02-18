@@ -12,7 +12,10 @@ module.exports = {
   }*/
 
   create(req, res) {
-    console.log(req.body);
-    res.send({ hi: 'There'});
+    //console.log(req.body);
+    const driverProps = req.body;
+
+    Driver.save(driverProps)
+      .then(driver => res.send(driver));
   }
 };

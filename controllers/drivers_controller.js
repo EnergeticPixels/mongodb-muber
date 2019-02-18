@@ -11,11 +11,12 @@ module.exports = {
     res.send({ hi: 'There' });
   }*/
 
-  create(req, res) {
+  create(req, res, next) {
     //console.log(req.body);
     const driverProps = req.body;
 
     Driver.create(driverProps)
-      .then(driver => res.send(driver));
+      .then(driver => res.send(driver))
+      .catch(next);
   }
 };

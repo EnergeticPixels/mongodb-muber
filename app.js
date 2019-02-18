@@ -13,4 +13,12 @@ if (process.env.NODE_ENV !== 'test') {
 app.use(bodyParser.json());
 routes(app);
 
+// middleware placement makes a difference as to when it takes place.
+// Here we are describing an error middleware handler
+app.use((err, req, res, next) => {
+  //console.log(err);
+  // status 422 is great when validation error issues
+  res.status(422).send({ error: err.message });
+});
+
 module.exports = app;

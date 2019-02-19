@@ -2,3 +2,4 @@
 --recursive
 --reporter spec
 --colors
+--timeout 10000

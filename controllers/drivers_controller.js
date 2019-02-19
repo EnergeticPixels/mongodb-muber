@@ -10,7 +10,7 @@ module.exports = {
   /*greeting: function(req, res) {
     res.send({ hi: 'There' });
   }*/
-
+  
   create(req, res, next) {
     //console.log(req.body);
     const driverProps = req.body;
@@ -40,5 +40,26 @@ module.exports = {
       //status 204 means deletion occured ok
       .then(driver => res.status(204).send(driver))
       .catch(next)
+  },
+
+  index(req, res, next) {
+    const { lng, lat } = req.query;  // geoNear does not work with req.body so we use req.query
+
+    // how we are going to look for drivers near a geo point
+    Driver.aggregate([
+      {
+        '$geoNear': {
+          "near": {
+            'type': 'Point',
+            'coordinates': [parseFloat(lng), parseFloat(lat)]
+          },
+          "spherical": true,
+          "distanceField": 'dist',
+          "maxDistance": 200000
+        }
+      }
+    ])
+      .then(drivers => res.status(200).send(drivers))
+      .catch(next);
   }
 };
